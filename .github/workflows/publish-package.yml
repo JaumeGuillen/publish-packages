@@ -1,4 +1,4 @@
-name: Publish Pakages
+name: Publish Packages
 on: workflow_dispatch
 
 jobs:
@@ -12,6 +12,10 @@ jobs:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
       - run: npm install
+        env:
+          NPM_CONFIG_USERCONFIG: publish-packages/sample-packages/npm
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: npm publish
         env:
+          NPM_CONFIG_USERCONFIG: publish-packages/sample-packages/npm
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
